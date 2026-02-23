@@ -77,16 +77,51 @@ void BinaryMatrix::solveAndDisplay() {
     for (auto& p : path)
         if (matrix[p.first][p.second] == 0) ++zerosCrossed;
 
+    // ANSI colour codes
+    const char* green = "\x1b[32m";
+    const char* red = "\x1b[31m";
+    const char* cyan = "\x1b[36m";
+    const char* reset = "\x1b[0m";
+
+    // Build overlay grid to mark S, E and path '*'
+    std::vector<std::vector<char>> overlay(rows, std::vector<char>(cols, 0));
+    for (auto& p : path) overlay[p.first][p.second] = '*';
+    if (startRow >= 0) overlay[startRow][startCol] = 'S';
+    if (endRow >= 0) overlay[endRow][endCol] = 'E';
+
     std::cout << "\nBinary Matrix (" << rows << "x" << cols << "):\n";
     std::cout << "--------------------\n";
     for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j)
-            std::cout << matrix[i][j] << " ";
+        for (int j = 0; j < cols; ++j) {
+            char o = overlay[i][j];
+            if (o == 'S') std::cout << green << 'S' << reset << " ";
+            else if (o == 'E') std::cout << red << 'E' << reset << " ";
+            else if (o == '*') std::cout << cyan << '*' << reset << " ";
+            else                std::cout << matrix[i][j] << " ";
+        }
         std::cout << '\n';
     }
     std::cout << "--------------------\n";
     std::cout << "Path steps: " << (path.size() ? static_cast<int>(path.size()) - 1 : 0) << '\n';
     std::cout << "Free cells crossed: " << zerosCrossed << '\n';
+    std::cout << "Index: " << green << "S" << reset << " = Start, "
+        << red << "E" << reset << " = End, "
+        << cyan << "*" << reset << " = Path, "
+        << "0 = free cell, 1 = obstacle\n";
+
+    // Per-step A* costs: g(n) = steps from start, h(n) = Manhattan distance to goal
+    if (!path.empty()) {
+        std::cout << "\nPer-step costs (index | row,col | g | h | f):\n";
+        for (size_t i = 0; i < path.size(); ++i) {
+            point cur{ path[i].first, path[i].second };
+            point goal{ endRow, endCol };
+            int g = static_cast<int>(i);
+            int h = manhattanDistance(cur, goal);
+            int f = f_cost(g, h);
+            std::cout << i << " | (" << cur.row << "," << cur.col << ") | "
+                << g << " | " << h << " | " << f << '\n';
+        }
+    }
 }
 
 void BinaryMatrix::displayMatrix() const {
