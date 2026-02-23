@@ -1,10 +1,10 @@
+#include "AStar.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "AStar.h"
 
 int main() {
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    std::srand(static_cast<unsigned int>(std::time(nullptr))); // seed once
 
     std::cout << "=== Random Binary Matrix with Random Start/End ===\n\n";
 
@@ -14,7 +14,7 @@ int main() {
     BinaryMatrix binMatrix(ROWS, COLS);
     binMatrix.generateRandomMatrix();
     binMatrix.randomizeStartEnd();
-    binMatrix.displayMatrix();
+    binMatrix.solveAndDisplay();
 
     return 0;
 }
