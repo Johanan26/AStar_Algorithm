@@ -1,58 +1,67 @@
-#ifndef PROJECT_H
-#define PROJECT_H
+#ifndef ASTAR_H
+#define ASTAR_H
 
 #include <vector>
 
-// Simple point type for grid coordinates
-struct point {
+// ---------------------------------------------------------------------------
+// Grid coordinate type
+// ---------------------------------------------------------------------------
+struct Point {
     int row;
     int col;
+
+    bool operator==(const Point& other) const noexcept {
+        return row == other.row && col == other.col;
+    }
 };
 
-// Manhattan distance heuristic h(n)
-constexpr int manhattanDistance(const point& p1, const point& p2) noexcept {
-    return (p1.row > p2.row ? p1.row - p2.row : p2.row - p1.row)
-        + (p1.col > p2.col ? p1.col - p2.col : p2.col - p1.col);
-}
-
+// ---------------------------------------------------------------------------
+// A* heuristic and cost helpers
+// h(n) – Manhattan distance (no diagonal movement allowed)
 // f(n) = g(n) + h(n)
-constexpr int f_cost(int g, int h) noexcept {
-    return g + h;
+// ---------------------------------------------------------------------------
+constexpr int manhattanDistance(const Point& a, const Point& b) noexcept {
+    return (a.row > b.row ? a.row - b.row : b.row - a.row)
+        + (a.col > b.col ? a.col - b.col : b.col - a.col);
 }
 
+constexpr int f_cost(int g, int h) noexcept { return g + h; }
+
+// ---------------------------------------------------------------------------
+// BinaryMatrix
+//   0 = free cell   1 = obstacle
+// ---------------------------------------------------------------------------
 class BinaryMatrix {
-private:
-    std::vector<std::vector<int>> matrix;
-    int rows;
-    int cols;
-    int startRow;
-    int startCol;
-    int endRow;
-    int endCol;
-
 public:
-    // Constructor
-    BinaryMatrix(int r, int c);
+    BinaryMatrix(int rows, int cols);
 
-    // Generate random binary matrix (0 = free, 1 = obstacle)
+    // Fill every cell randomly with 0 or 1
     void generateRandomMatrix();
 
-    // Pick random start/end on free cells (0)
+    // Pick two distinct free cells as start (S) and end (E)
     void randomizeStartEnd();
 
-    // Ensure reachability by carving a simple Manhattan (L-shaped) corridor
-    void carveManhattanCorridorIfNeeded();
+    // Run A*, then print the grid + per-step cost table
+    void solveAndDisplay() const;
 
-    // Build corridor, count free cells crossed, compute costs and display
-    void solveAndDisplay();
-
-    // Display the matrix with start/end positions
+    // Plain display (no colour, no path)
     void displayMatrix() const;
 
     // Getters
     int getRows() const;
     int getCols() const;
     std::vector<std::vector<int>> getMatrix() const;
+
+private:
+    std::vector<std::vector<int>> matrix;
+    int rows;
+    int cols;
+    Point start;
+    Point end;
+
+    // Returns the optimal path [start … end], or empty if no path exists.
+    // Each cell costs 1 to enter (uniform-cost grid).
+    std::vector<Point> runAStar() const;
 };
 
-#endif
+#endif // ASTAR_H

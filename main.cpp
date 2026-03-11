@@ -4,17 +4,17 @@
 #include <ctime>
 
 int main() {
-    std::srand(static_cast<unsigned int>(std::time(nullptr))); // seed once
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    std::cout << "=== Random Binary Matrix with Random Start/End ===\n\n";
+    std::cout << "=== A* Pathfinding on a Random Binary Matrix ===\n";
 
     const int ROWS = 6;
     const int COLS = 8;
 
-    BinaryMatrix binMatrix(ROWS, COLS);
-    binMatrix.generateRandomMatrix();
-    binMatrix.randomizeStartEnd();
-    binMatrix.solveAndDisplay();
+    BinaryMatrix grid(ROWS, COLS);
+    grid.generateRandomMatrix();
+    grid.randomizeStartEnd();
+    grid.solveAndDisplay();
 
     return 0;
 }
