@@ -8,11 +8,44 @@
 
 **Project Title:** AStar Pathfinding in C++   
 
----
+**Language:** C++ 14
 
+---
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Project Aims](#project-aims)
+3. [How the Program Works](#how-the-program-works)
+4. [Program Structure](#program-structure)
+   - [Point](#point)
+   - [Grid](#grid)
+   - [AStar](#astar)
+   - [Display](#display)
+   - [main](#main)
+5. [Design Choices](#design-choices)
+   - [Why Manhattan Distance Was Used](#why-manhattan-distance-was-used)
+   - [Why Modular Design Was Used](#why-modular-design-was-used)
+6. [Core Algorithm Explanation](#core-algorithm-explanation)
+7. [Screenshots](#screenshots)
+   - [Program Setup](#program-setup)
+   - [Grid Logic](#grid-logic)
+   - [AStar Core Logic](#astar-core-logic)
+   - [Output / Display](#output--display)
+   - [Program Output](#program-output)
+8. [Testing and Validation](#testing-and-validation)
+   - [Test Case 1: Normal Path Available](#test-case-1-normal-path-available)
+   - [Test Case 2: Dense Obstacle Layout](#test-case-2-dense-obstacle-layout)
+   - [Test Case 3: No Path Possible](#test-case-3-no-path-possible)
+9. [Project Management](#project-management)
+   - [Progress Tracking](#progress-tracking)
+10. [Problems Encountered](#problems-encountered)
+11. [Reflection](#reflection)
+12. [References](#references)
+
+---
 ## Overview:
 
-This project implements the **AStar** algorithm in **modern C++** to find the shortest path between the start point and the end point on a grid containing obstacles. The system was designed using a modular and object-oriented structure so that the logic for the grid, algorithm, point handling, and display are separated into different files. In terms of the movement calculations I used Manhatten Distance to calculate where the algorithm can move and where it is restricted.
+This project implements the **AStar** algorithm in **modern C++** to find the shortest path between the start point and the end point on a grid containing obstacles. The system was designed using a modular and object-oriented structure so that the logic for the grid, algorithm, point handling, and display are separated into different files. In terms of the movement calculations I used Manhattan Distance to calculate where the algorithm can move and where it is restricted.
 
 The project aimed not just to deliver a functional pathfinding program, but to showcase a broader understanding of algorithmic design, modular software development, problem solving, and the process of iterative improvement throughout development.
 
@@ -282,7 +315,7 @@ One of the biggest challenges was ensuring that the algorithm did not revisit no
 
 Another challenge was keeping the project understandable. It is easy for pathfinding code or the code Ai had given me to become difficult to read when all logic is placed in one file. Splitting responsibilities across classes improved readability and made debugging easier.
 
-A further issue was that the manhatten distance was continuously outputting the path in an L shape which I had noticed after rerunning the program.
+A further issue was that the Manhattan distance was continuously outputting the path in an L shape which I had noticed after rerunning the program.
 
 These problems were addressed through iterative debugging, testing different scenarios, and improving the structure of the code rather than only trying to “make it work”.
 
@@ -305,14 +338,14 @@ If I were to redo this project i would improve it by:
 Overall, the project was successful because it not only produced a functional implementation, but also improved my understanding of algorithm design, modular development, and the importance of clear technical communication.
 
 ## References:
--cppreference.com (2025) std::vector. https://en.cppreference.com/w/cpp/container/vector.html?
+-cppreference.com (2025) std::vector. https://en.cppreference.com/w/cpp/container/vector.html
 
--cppreference.com (2025) std::abs. https://en.cppreference.com/w/cpp/numeric/math/abs?
+-cppreference.com (2025) std::abs. https://en.cppreference.com/w/cpp/numeric/math/abs
 
--Patel, A. Introduction to the A Algorithm*. Red Blob Games. www.redblobgames.com/pathfinding/a-star/introduction.html?
+-Patel, A. Introduction to the A Algorithm* (2023). Red Blob Games. www.redblobgames.com/pathfinding/a-star/introduction.html
 
--Chat Gpt. https://chatgpt.com
+-Chat Gpt (2025). https://chatgpt.com
 
--Claude Ai. https://claude.ai
+-Claude Ai (2025). https://claude.ai
 
 -GeeksforGeeks (2025) Manhattan Distance. https://www.geeksforgeeks.org/data-science/manhattan-distance/
