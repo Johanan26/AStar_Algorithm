@@ -244,15 +244,6 @@ The program should report that no path was found.
 **Actual result:**  
 The program returned an empty result and handled the case safely.
 
-### Test Case 4: Different grid sizes
-Testing with different grid sizes improves confidence that the implementation is reusable and not tied to only one fixed setup.
-
-**Expected result:**  
-The program should still function correctly as long as valid inputs are provided.
-
-**Actual result:**  
-The design supports reuse because the grid dimensions are configurable.
-
 ---
 
 ## Project Management:
