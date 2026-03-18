@@ -1,20 +1,34 @@
 #include "AStar.h"
-#include <iostream>
+#include "Display.h"
+#include "Grid.h"
+
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
+
+void runRandomTest(int rows, int cols, int obstaclePercent) {
+    Grid grid(rows, cols);
+    grid.randomFill(obstaclePercent);
+    grid.randomiseEndpoints();
+
+    std::vector<Point> path = AStar::findPath(grid);
+
+    std::cout << "\n========================================\n";
+    std::cout << "Test case: " << rows << "x" << cols
+        << ", obstacle density = " << obstaclePercent << "%\n";
+    Display::render(grid, path);
+}
 
 int main() {
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    std::cout << "=== A* Pathfinding on a Random Binary Matrix ===\n";
+    std::cout << "=== A* Pathfinding Project ===\n";
 
-    const int ROWS = 6;
-    const int COLS = 8;
+    // General test
+    runRandomTest(6, 8, 30);
 
-    BinaryMatrix grid(ROWS, COLS);
-    grid.generateRandomMatrix();
-    grid.randomizeStartEnd();
-    grid.solveAndDisplay();
+    // Edge case: denser obstacle map
+    runRandomTest(6, 8, 45);
 
     return 0;
 }
