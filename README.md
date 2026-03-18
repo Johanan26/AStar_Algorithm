@@ -1,5 +1,3 @@
-# AStar Pathfinding Project
-
 **Student:** Johanan Seeruthen  
 
 **Student Number** G00419446
@@ -170,14 +168,7 @@ This approach is guaranteed to produce the shortest path in this context for the
 
 ### Program Setup
 
-screenshot here showing the section of your **main.cpp** where the grid is created, the test case is run, and the algorithm is called.
-
-screenshot here: `images/main-setup.png`  
-What it should show: 
- grid creation  
- random fill or manual setup  
-call to `AStar::findPath()`  
-call to `Display::render()`  
+<img src="docs/assets/images/main-setup.png" alt="image of main setup">
  
 *Figure 1. Main program flow showing grid setup, pathfinding call, and rendering of the result.*
 
@@ -185,14 +176,9 @@ call to `Display::render()`
 
 ### Grid Logic
 
-screenshot here showing functions from `Grid.cpp` and `Grid.h`.
-
- screenshot here:`images/grid-logic.png`  
-What it should show:  
- `isInside()`  
-`isWalkable()`  
-grid generation or obstacle handling  
- start/end setup if possible  
+<img src="docs/assets/images/grid-logic1.png" alt="image of grid logic">
+<img src="docs/assets/images/grid-logic2.png" alt="image of grid logic">
+<img src="docs/assets/images/grid-logic3.png" alt="image of grid logic">
 
 *Figure 2. Grid logic used to validate positions and represent blocked and walkable cells.*
 
@@ -200,15 +186,8 @@ grid generation or obstacle handling
 
 ### AStar Core Logic
 
-screenshot here showing the main section of `AStar.cpp`.
-
-screenshot here: `images/astar-core.png`  
-**What it should show:**  
-open list selection  
-neighbour checking  
-cost updates (`g`, `h`, `f`)  
-parent assignment  
-path reconstruction if possible  
+<img src="docs/assets/images/astar-core1.png" alt="image of astar logic">
+<img src="docs/assets/images/astar-core2.png" alt="image of astar logic">
 
 *Figure 3. Core AStar implementation showing cost calculation, node expansion, and path reconstruction.*
 
@@ -216,14 +195,8 @@ path reconstruction if possible
 
 ### Output / Display
 
-screenshot here showing your display logic or terminal output code.
-
-screenshot here: `images/display-output.png`  
-What it should show:  
-rendering of grid  
-start/end labels  
-path symbols  
-any printed cost or legend  
+<img src="docs/assets/images/display-output1.png" alt="image of display">
+<img src="docs/assets/images/display-output2.png" alt="image of display">
 
 *Figure 4. Display logic used to present the shortest path clearly to the user.*
 
@@ -231,16 +204,7 @@ any printed cost or legend
 
 ### Program Output
 
-screenshot here of the program running successfully in the terminal.
-
-screenshot here: `images/program-run.png`  
-**What it should show:**  
-full program execution  
-visible start point  
-visible end point  
-obstacles  
-shortest path result  
-any “no path found” message if you want an edge case example too  
+<img src="docs/assets/images/program-run.png" alt="image of display">
 
 *Figure 5. Example execution of the program showing a successful shortest-path result.*
 
