@@ -319,6 +319,8 @@ A further issue was that the Manhattan distance was continuously outputting the 
 
 These problems were addressed through iterative debugging, testing different scenarios, and improving the structure of the code rather than only trying to “make it work”.
 
+Some of the code generated with Claude used features from newer versions of C++, which caused issues with my project as it was running with C++ 14. I made the choice to use C++ 14 as older compiler settings are more likely to use that version by default. Keeping the project within the C++14 standard made it more practical and accessible for anyone testing, demonstrating, or marking the project on university systems. 
+
 ---
 
 ## Reflection:
